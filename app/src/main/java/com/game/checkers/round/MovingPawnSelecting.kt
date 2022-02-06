@@ -1,6 +1,4 @@
-package com.game.checkers.board
-
-
+package com.game.checkers.round
 
 import android.os.Bundle
 import android.util.Log
@@ -10,67 +8,65 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import androidx.fragment.app.Fragment
 import com.game.checkers.R
+import com.game.checkers.board.Board
+import com.game.checkers.board.BoardRepo
 import com.game.checkers.databinding.BoardBinding
 
 
-class BoardView: Fragment()  {
+class MovingPawnSelecting(b: Board, p: Int) : Fragment(){
 
-    lateinit var bv: View //board view
+    private val board: Board = b
+    private val player: Int = p
+    private val sf: Int = 0 //selected field
+    private val br: BoardRepo = BoardRepo(b)
     private var _binding: BoardBinding? = null //initializing binding for board.xml
     private val binding get() = _binding!!
-    private val board: Board = Board()
-
-    private val moveable = intArrayOf(
-        1, 3, 5, 7,
-        8, 10, 12, 14,
-        17, 19, 21, 23,
-        24, 26, 28, 30,
-        33, 35, 37, 39,
-        40, 42, 44, 46,
-        49, 51, 53, 55,
-        56, 58, 60, 62
-    )
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = BoardBinding.inflate(inflater, container, false) // creating binding for board.xml
+        _binding =
+            BoardBinding.inflate(inflater, container, false) // creating binding for board.xml
         val view = binding.root
+        buildBoard()
         return view
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        for(f in moveable){
-            var found: Boolean = false;
-            for(i in 0..11 ){
-                if(f == board.team1[i].location){
-                    getFieldButton(f)?.setBackgroundResource(R.drawable.rp)
-                    found = true
-                }
-                if(f == board.team2[i].location){
-                    getFieldButton(f)?.setBackgroundResource(R.drawable.wp)
-                    found = true
-                }
-            }
-            if(!found){
-                getFieldButton(f)?.setBackgroundResource(R.drawable.bf)
+        val cm: MutableList<Int> =
+            br.thosePawnsCanMove(player)  // creating list of player's pawn which are able to move
+        for (f in cm) {
+            getFieldButton(f)?.setOnClickListener{view->
+                if(player == 1){getFieldButton(f)?.setBackgroundResource(R.drawable.wpselected)}
+                if(player == 2){getFieldButton(f)?.setBackgroundResource(R.drawable.rpselected)}
             }
         }
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    fun buildBoard(){
+        for (f in br.movable) { // get every movable field
+            var found: Boolean = false; //if there is a pawn on this field it will change to true
+            for (i in 0..11) { //and check for every 12 pawn's his location on board
+                if (f == board.team1[i].location || f == board.team2[i].location) {
+                    getFieldButton(f)?.setBackgroundResource(R.drawable.wp)//set white pawn if player 1
+                    found = true
+                }
+                if (f == board.team2[i].location) {
+                    getFieldButton(f)?.setBackgroundResource(R.drawable.rp) //set white pawn for player 1
+                    found = true
+                }
+                if (!found) {
+                    getFieldButton(f)?.setBackgroundResource(R.drawable.bf)//if there are not pawns found set for this field empty field graphic
+                }
+            }
+        }
     }
 
-
-    //service functions
-
-    private fun getFieldButton(i: Int): ImageButton? {
+    //contains button of every field
+    fun getFieldButton(i: Int): ImageButton? {
         var ib: ImageButton? = null
         if(i == 1){ ib = binding.f1}
         if(i == 3){ ib = binding.f3}
@@ -113,3 +109,6 @@ class BoardView: Fragment()  {
 
 
 }
+
+
+

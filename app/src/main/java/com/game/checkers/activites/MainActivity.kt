@@ -1,22 +1,26 @@
-package com.game.checkers
+package com.game.checkers.activites
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.game.checkers.board.BoardView
-import com.game.checkers.databinding.ActivityMainBinding
+import com.game.checkers.R
+import com.game.checkers.board.Board
+import com.game.checkers.round.CheckingPawnsArrangement
 
 class MainActivity : AppCompatActivity() {
 
     private val fragmentManager = supportFragmentManager
-    private val bc: BoardView = BoardView()
-    private lateinit var binding: ActivityMainBinding
+    private val board: Board = Board()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.board_view, bc)
-        fragmentTransaction.commit()
+    }
+
+    override fun onStart() {
+        super.onStart()
         setContentView(R.layout.board)
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.board_view, CheckingPawnsArrangement(board, 1))
+        fragmentTransaction.commit()
     }
 
 }

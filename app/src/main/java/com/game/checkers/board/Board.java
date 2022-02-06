@@ -8,16 +8,16 @@ import static java.lang.StrictMath.abs;
 
 
 public class Board {
-    private final Pawn[] team1;
-    private final Pawn[] team2;
+    private Pawn[] team1;
+    private Pawn[] team2;
 
     public Board() {
-        this.team1 = setTeam(1);
-        this.team2 = setTeam(2);
+        this.team1 = initiateTeam(1);
+        this.team2 = initiateTeam(2);
     }
 
 
-    private Pawn[] setTeam(int t) {
+    private Pawn[] initiateTeam(int t) {
         int[] pL1 = {40, 42, 44, 46, 49, 51, 53, 55, 56, 58, 60, 62};
         int[] pL2 = {1, 3, 5, 7, 8, 10, 12, 14, 17, 19, 21, 23};
         int[] pL;
@@ -56,17 +56,17 @@ public class Board {
     }
 
 
-    protected void moving(Pawn[] team,int l, int m) {
+    private void moving(Pawn[] team,int l, int m) {
         int ind =pawnIndexFinder(team, l);
         team[ind].move(m);
     }
 
-    protected void moving(Pawn [] team, int l, int m, int q){
+    private void moving(Pawn [] team, int l, int m, int q){
         int ind =pawnIndexFinder(team, l);
         team[ind].move(m, q);
     }
 
-    protected void capturing(Pawn[] player, Pawn[] enemy, int ppl ,int epl) {
+    private void capturing(Pawn[] player, Pawn[] enemy, int ppl ,int epl) {
         //ppl = player's pawn location; epl enemy's pawn location
         int ppi = pawnIndexFinder(player, ppl); //player's pawn index
         int epi = pawnIndexFinder(enemy, epl); // enemy's pawn index;
@@ -102,10 +102,11 @@ public class Board {
     }
 
 
-    protected void promoting(Pawn[] team, int pl){
+    private void promoting(Pawn[] team, int pl){
         int i = pawnIndexFinder(team, pl);
         team[i].setType(1);
     }
+
 
     protected boolean canCapture(Pawn[] player, Pawn[] enemy, int ppl, int epl) {
         boolean can = false;
@@ -245,6 +246,8 @@ public class Board {
         }
         return pnl;
     }
+
+
 
     public Pawn[] getTeam1() {
         return team1;

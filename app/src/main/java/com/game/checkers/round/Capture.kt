@@ -1,4 +1,6 @@
 package com.game.checkers.round
 
-class Capture {
+import androidx.fragment.app.Fragment
+
+class Capture : Fragment() {
 }
