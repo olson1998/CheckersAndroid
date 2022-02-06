@@ -1,0 +1,518 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/touch_outside"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent">
+    </Button>
+
+    <!-- Board -->
+    <RelativeLayout
+        android:id="@+id/board_view"
+        android:layout_width="370dp"
+        android:layout_height="370dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="370dp"
+            android:layout_height="370dp"
+            android:src="@drawable/board_background">
+        </ImageView>
+
+        <!--lvl0, 0 to 7-->
+
+        <LinearLayout
+            android:id="@+id/lvl0"
+            android:layout_width="304dp"
+            android:layout_height="38dp"
+            android:layout_marginTop="33dp"
+            android:layout_marginLeft="33dp"
+            android:layout_marginRight="33dp">
+
+
+            <ImageView
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:src ="@drawable/wf">
+            </ImageView>
+
+            <ImageButton
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:id="@+id/f1">
+            </ImageButton>
+
+            <ImageView
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:src ="@drawable/wf">
+            </ImageView>
+
+            <ImageButton
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:id="@+id/f3">
+            </ImageButton>
+
+            <ImageView
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:src ="@drawable/wf">
+            </ImageView>
+
+            <ImageButton
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:id="@+id/f5">
+            </ImageButton>
+
+            <ImageView
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:src ="@drawable/wf">
+            </ImageView>
+
+            <ImageButton
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:id="@+id/f7">
+            </ImageButton>
+
+        </LinearLayout>
+
+        <!--lvl1, 8 to 15-->
+
+        <LinearLayout
+            android:id="@+id/lvl1"
+            android:layout_width="304dp"
+            android:layout_height="38dp"
+            android:layout_marginLeft="33dp"
+            android:layout_marginRight="33dp"
+            android:layout_below="@+id/lvl0">
+
+            <ImageButton
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:id="@+id/f8">
+            </ImageButton>
+
+            <ImageView
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:src ="@drawable/wf">
+            </ImageView>
+
+            <ImageButton
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:id="@+id/f10">
+            </ImageButton>
+
+            <ImageButton
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:src ="@drawable/wf">
+            </ImageButton>
+
+            <ImageButton
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:id="@+id/f12">
+            </ImageButton>
+
+            <ImageView
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:src ="@drawable/wf">
+            </ImageView>
+
+            <ImageButton
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:id="@+id/f14">
+            </ImageButton>
+
+            <ImageView
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:src ="@drawable/wf">
+            </ImageView>
+
+        </LinearLayout>
+
+        <!--lvl2, 16 to 23-->
+
+        <LinearLayout
+            android:id="@+id/lvl2"
+            android:layout_width="304dp"
+            android:layout_height="38dp"
+            android:layout_marginLeft="33dp"
+            android:layout_marginRight="33dp"
+            android:layout_below="@+id/lvl1">
+
+            <ImageView
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:src ="@drawable/wf">
+            </ImageView>
+
+            <ImageButton
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:id="@+id/f17">
+            </ImageButton>
+
+            <ImageView
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:src ="@drawable/wf">
+            </ImageView>
+
+            <ImageButton
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:id="@+id/f19">
+            </ImageButton>
+
+            <ImageView
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:src ="@drawable/wf">
+            </ImageView>
+
+            <ImageButton
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:id="@+id/f21">
+            </ImageButton>
+
+            <ImageView
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:src ="@drawable/wf">
+            </ImageView>
+
+            <ImageButton
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:id="@+id/f23">
+            </ImageButton>
+
+        </LinearLayout>
+
+        <!--lvl3, 24 to 31-->
+
+        <LinearLayout
+            android:id="@+id/lvl3"
+            android:layout_width="304dp"
+            android:layout_height="38dp"
+            android:layout_marginLeft="33dp"
+            android:layout_marginRight="33dp"
+            android:layout_below="@+id/lvl2">
+
+            <ImageButton
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:id="@+id/f24">
+            </ImageButton>
+
+            <ImageView
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:src ="@drawable/wf">
+            </ImageView>
+
+            <ImageButton
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:id="@+id/f26">
+            </ImageButton>
+
+            <ImageView
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:src ="@drawable/wf">
+            </ImageView>
+
+            <ImageButton
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:id="@+id/f28">
+            </ImageButton>
+
+            <ImageView
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:src ="@drawable/wf">
+            </ImageView>
+
+            <ImageButton
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:id="@+id/f30">
+            </ImageButton>
+
+            <ImageView
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:src ="@drawable/wf">
+            </ImageView>
+
+        </LinearLayout>
+
+        <!--lvl4, 32 to 39-->
+
+        <LinearLayout
+            android:id="@+id/lvl4"
+            android:layout_width="304dp"
+            android:layout_height="38dp"
+            android:layout_marginLeft="33dp"
+            android:layout_marginRight="33dp"
+            android:layout_below="@+id/lvl3">
+
+            <ImageView
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:src ="@drawable/wf">
+            </ImageView>
+
+            <ImageButton
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:id="@+id/f33">
+            </ImageButton>
+
+            <ImageView
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:src ="@drawable/wf">
+            </ImageView>
+
+            <ImageButton
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:id="@+id/f35">
+            </ImageButton>
+
+            <ImageView
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:src ="@drawable/wf">
+            </ImageView>
+
+            <ImageButton
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:id="@+id/f37">
+            </ImageButton>
+
+            <ImageView
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:src ="@drawable/wf">
+            </ImageView>
+
+            <ImageButton
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:id="@+id/f39">
+            </ImageButton>
+
+        </LinearLayout>
+
+        <!--lvl5, 24 to 31-->
+
+        <LinearLayout
+            android:id="@+id/lvl5"
+            android:layout_width="304dp"
+            android:layout_height="38dp"
+            android:layout_marginLeft="33dp"
+            android:layout_marginRight="33dp"
+            android:layout_below="@+id/lvl4">
+
+            <ImageButton
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:id="@+id/f40">
+            </ImageButton>
+
+            <ImageView
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:src ="@drawable/wf">
+            </ImageView>
+
+            <ImageButton
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:id="@+id/f42">
+            </ImageButton>
+
+            <ImageView
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:src ="@drawable/wf">
+            </ImageView>
+
+            <ImageButton
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:id="@+id/f44">
+            </ImageButton>
+
+            <ImageView
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:src ="@drawable/wf">
+            </ImageView>
+
+            <ImageButton
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:id="@+id/f46">
+            </ImageButton>
+
+            <ImageView
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:src ="@drawable/wf">
+            </ImageView>
+
+        </LinearLayout>
+
+        <!--lvl6, 48 to 55-->
+
+        <LinearLayout
+            android:id="@+id/lvl6"
+            android:layout_width="304dp"
+            android:layout_height="38dp"
+            android:layout_marginLeft="33dp"
+            android:layout_marginRight="33dp"
+            android:layout_below="@+id/lvl5">
+
+            <ImageView
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:src ="@drawable/wf">
+            </ImageView>
+
+            <ImageButton
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:id="@+id/f49">
+            </ImageButton>
+
+            <ImageView
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:src ="@drawable/wf">
+            </ImageView>
+
+            <ImageButton
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:id="@+id/f51">
+            </ImageButton>
+
+            <ImageView
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:src ="@drawable/wf">
+            </ImageView>
+
+            <ImageButton
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:id="@+id/f53">
+            </ImageButton>
+
+            <ImageView
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:src ="@drawable/wf">
+            </ImageView>
+
+            <ImageButton
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:id="@+id/f55">
+            </ImageButton>
+
+        </LinearLayout>
+
+        <!--lvl7, 56 to 63-->
+
+        <LinearLayout
+            android:id="@+id/lvl7"
+            android:layout_width="304dp"
+            android:layout_height="38dp"
+            android:layout_marginBottom="33dp"
+            android:layout_marginLeft="33dp"
+            android:layout_marginRight="33dp"
+            android:layout_below="@+id/lvl6">
+
+            <ImageButton
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:id="@+id/f56">
+            </ImageButton>
+
+            <ImageView
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:src ="@drawable/wf">
+            </ImageView>
+
+            <ImageButton
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:id="@+id/f58">
+            </ImageButton>
+
+            <ImageView
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:src ="@drawable/wf">
+            </ImageView>
+
+            <ImageButton
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:id="@+id/f60">
+            </ImageButton>
+
+            <ImageView
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:src ="@drawable/wf">
+            </ImageView>
+
+            <ImageButton
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:id="@+id/f62">
+            </ImageButton>
+
+            <ImageView
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:src ="@drawable/wf">
+            </ImageView>
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
