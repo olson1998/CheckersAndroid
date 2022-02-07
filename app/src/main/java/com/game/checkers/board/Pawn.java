@@ -2,7 +2,7 @@ package com.game.checkers.board;
 
 public class Pawn {
     private int type; // -1 -> captured; 0 -> default; 1 -> queen
-    private int location;
+    private int location; // pawn's location on board
 
     public Pawn() {
         this.type = 0;

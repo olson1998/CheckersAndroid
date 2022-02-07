@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Checkers</string>
+    <string name="round1">Round of player 1</string>
+    <string name="round2">Round of player 2</string>
 </resources>

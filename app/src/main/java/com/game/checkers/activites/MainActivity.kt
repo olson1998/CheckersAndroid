@@ -19,7 +19,10 @@ class MainActivity : AppCompatActivity() {
         super.onStart()
         setContentView(R.layout.board)
         val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.board_view, CheckingPawnsArrangement(board, 1))
+        fragmentTransaction.replace(
+            R.id.board_view,
+            CheckingPawnsArrangement(board, 1)
+        )
         fragmentTransaction.commit()
     }
 

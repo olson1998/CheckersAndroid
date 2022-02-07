@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
     <!-- Board -->
+
     <RelativeLayout
         android:id="@+id/board_view"
         android:layout_width="370dp"
@@ -15,11 +17,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:layout_width="370dp"
-            android:layout_height="370dp"
-            android:src="@drawable/board_background">
-        </ImageView>
+            <ImageView
+                android:layout_width="370dp"
+                android:layout_height="370dp"
+                android:src="@drawable/board_background">
+            </ImageView>
+
+
 
         <!--lvl0, 0 to 7-->
 
@@ -503,16 +507,8 @@
 
         </LinearLayout>
 
-        <Button
-            android:id="@+id/touch_outside"
-            android:visibility="invisible"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@android:color/transparent">
-        </Button>
 
     </RelativeLayout>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

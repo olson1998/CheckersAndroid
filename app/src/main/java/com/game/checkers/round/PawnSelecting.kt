@@ -1,7 +1,6 @@
 package com.game.checkers.round
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,15 +9,17 @@ import androidx.fragment.app.Fragment
 import com.game.checkers.R
 import com.game.checkers.board.Board
 import com.game.checkers.board.BoardRepo
+import com.game.checkers.board.Pawn
 import com.game.checkers.databinding.BoardBinding
 
 
-class MovingPawnSelecting(b: Board, p: Int) : Fragment(){
+class PawnSelecting(b: Board, p: Int, e: Char) : Fragment(){
 
-    private val board: Board = b
-    private val player: Int = p
-    private val sf: Int = 0 //selected field
-    private val br: BoardRepo = BoardRepo(b)
+    private val player: Int = p //player, 1-> white pawns 2-> red pawns
+    private val br: BoardRepo = BoardRepo(b) //repository which contains methods operating on Board
+    private val event: Char = e // event, 'm' -> moving 'c'-> capturing
+    private val t1: Array<Pawn> = br.team1 //local copy of team 1 pawns data
+    private val t2: Array<Pawn> = br.team2//local copy of team 2 pawns data
     private var _binding: BoardBinding? = null //initializing binding for board.xml
     private val binding get() = _binding!!
 
@@ -36,28 +37,38 @@ class MovingPawnSelecting(b: Board, p: Int) : Fragment(){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val cm: MutableList<Int> =
-            br.thosePawnsCanMove(player)  // creating list of player's pawn which are able to move
+        var cm: MutableList<Int> = arrayListOf() //list of pawns which are able to create board event
+        if(event == 'm'){cm= br.thosePawnsCanMove(player) } // creating list of player's pawn which are able to move
+        if(event == 'c'){cm= br.thosePawnsCanCapture(player) } // creating list of player's pawn which are able to capture
         for (f in cm) {
             getFieldButton(f)?.setOnClickListener{view->
-                if(player == 1){getFieldButton(f)?.setBackgroundResource(R.drawable.wpselected)}
-                if(player == 2){getFieldButton(f)?.setBackgroundResource(R.drawable.rpselected)}
+                    var pd: MutableList<Int> = arrayListOf()
+                    if(event == 'm'){pd = br.possibleDirectionsToMove(player, f) } //creating list of location which pawn is able to move on
+                    if(event == 'c'){pd = br.possibleDirectionsToCapture(player, f) } //creating list of location which pawn would be located on after capturing enemy's pawn
+                    val fragmentTransaction = parentFragmentManager.beginTransaction()
+                    fragmentTransaction.replace(
+                        R.id.board_view,
+                        BoardEvent(br.board, player, f, pd, event)//after click move to board event fragment
+                    )
+                    fragmentTransaction.commit()
             }
         }
     }
 
+    //create visual representation of of Board
     fun buildBoard(){
         for (f in br.movable) { // get every movable field
             var found: Boolean = false; //if there is a pawn on this field it will change to true
             for (i in 0..11) { //and check for every 12 pawn's his location on board
-                if (f == board.team1[i].location || f == board.team2[i].location) {
+                if (f == t1[i].location) {
                     getFieldButton(f)?.setBackgroundResource(R.drawable.wp)//set white pawn if player 1
                     found = true
                 }
-                if (f == board.team2[i].location) {
-                    getFieldButton(f)?.setBackgroundResource(R.drawable.rp) //set white pawn for player 1
+                if (f == t2[i].location) {
+                    getFieldButton(f)?.setBackgroundResource(R.drawable.rp) //set white red for player 2
                     found = true
                 }
+                if(found){break} //if pawn was found break the loop
                 if (!found) {
                     getFieldButton(f)?.setBackgroundResource(R.drawable.bf)//if there are not pawns found set for this field empty field graphic
                 }
@@ -103,7 +114,6 @@ class MovingPawnSelecting(b: Board, p: Int) : Fragment(){
         if(i == 58){ ib = binding.f58}
         if(i == 60){ ib = binding.f60}
         if(i == 62){ ib = binding.f62}
-        Log.d("returned: ", ib.toString())
         return ib
     }
 

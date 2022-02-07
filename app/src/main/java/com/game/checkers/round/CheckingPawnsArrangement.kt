@@ -1,6 +1,5 @@
 package com.game.checkers.round
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -32,17 +31,18 @@ class CheckingPawnsArrangement(b: Board, p: Int) : Fragment() {
     //player's pawn are able to move
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        var r: Char? = null
         if(br.isWin){
             Log.d("won: " , player.toString())
         }
         else if(br.isEnemyToCapture(player)){
             val fragmentTransaction = parentFragmentManager.beginTransaction()
-            fragmentTransaction.replace(R.id.board_view, Capture())
+            fragmentTransaction.replace(R.id.board_view, PawnSelecting(br.board, player,'c'))
             fragmentTransaction.commit()
         }
         else{
             val fragmentTransaction = parentFragmentManager.beginTransaction()
-            fragmentTransaction.replace(R.id.board_view, MovingPawnSelecting(br.board, player))
+            fragmentTransaction.replace(R.id.board_view, PawnSelecting(br.board, player,'m'))
             fragmentTransaction.commit()
         }
     }
