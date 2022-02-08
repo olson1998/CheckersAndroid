@@ -31,7 +31,6 @@ class PawnSelecting(b: Board, p: Int, e: Char) : Fragment(){
         _binding =
             BoardBinding.inflate(inflater, container, false) // creating binding for board.xml
         val view = binding.root
-        br.checkAndPROMOTE(player)
         buildBoard()
         return view
     }
@@ -54,7 +53,8 @@ class PawnSelecting(b: Board, p: Int, e: Char) : Fragment(){
                             player,
                             f, //field of selected pawn
                             pd,
-                            event
+                            event,
+                            false //no multiple capture
                         )//after click move to board event fragment
                     )
                     fragmentTransaction.commit()
