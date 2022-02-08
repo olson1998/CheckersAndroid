@@ -12,8 +12,8 @@ import com.game.checkers.board.BoardRepo
 import com.game.checkers.databinding.BoardBinding
 
 class CheckingPawnsArrangement(b: Board, p: Int) : Fragment() {
-    private val br: BoardRepo = BoardRepo(b)
-    private val player = p
+    private val br: BoardRepo = BoardRepo(b) //repository which contains methods operating on Board
+    private val player = p //player, 1-> white pawns 2-> red pawns
     private var _binding: BoardBinding? = null //initializing binding for board.xml
     private val binding get() = _binding!!
 
@@ -31,18 +31,32 @@ class CheckingPawnsArrangement(b: Board, p: Int) : Fragment() {
     //player's pawn are able to move
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        var r: Char? = null
-        if(br.isWin){
+        var e: Char? = null
+        if(br.isWin){ //checking if there is win
             Log.d("won: " , player.toString())
         }
         else if(br.isEnemyToCapture(player)){
             val fragmentTransaction = parentFragmentManager.beginTransaction()
-            fragmentTransaction.replace(R.id.board_view, PawnSelecting(br.board, player,'c'))
+            fragmentTransaction.replace(
+                R.id.board_view,
+                PawnSelecting(
+                    br.board,
+                    player,
+                    'c' //capturing
+                )
+            )
             fragmentTransaction.commit()
         }
         else{
             val fragmentTransaction = parentFragmentManager.beginTransaction()
-            fragmentTransaction.replace(R.id.board_view, PawnSelecting(br.board, player,'m'))
+            fragmentTransaction.replace(
+                R.id.board_view,
+                PawnSelecting(
+                    br.board,
+                    player,
+                    'm' //moving
+                )
+            )
             fragmentTransaction.commit()
         }
     }

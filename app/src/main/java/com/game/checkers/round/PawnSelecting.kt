@@ -31,6 +31,7 @@ class PawnSelecting(b: Board, p: Int, e: Char) : Fragment(){
         _binding =
             BoardBinding.inflate(inflater, container, false) // creating binding for board.xml
         val view = binding.root
+        br.checkAndPROMOTE(player)
         buildBoard()
         return view
     }
@@ -48,7 +49,13 @@ class PawnSelecting(b: Board, p: Int, e: Char) : Fragment(){
                     val fragmentTransaction = parentFragmentManager.beginTransaction()
                     fragmentTransaction.replace(
                         R.id.board_view,
-                        BoardEvent(br.board, player, f, pd, event)//after click move to board event fragment
+                        BoardEvent(
+                            br.board,
+                            player,
+                            f, //field of selected pawn
+                            pd,
+                            event
+                        )//after click move to board event fragment
                     )
                     fragmentTransaction.commit()
             }
@@ -61,11 +68,13 @@ class PawnSelecting(b: Board, p: Int, e: Char) : Fragment(){
             var found: Boolean = false; //if there is a pawn on this field it will change to true
             for (i in 0..11) { //and check for every 12 pawn's his location on board
                 if (f == t1[i].location) {
-                    getFieldButton(f)?.setBackgroundResource(R.drawable.wp)//set white pawn if player 1
+                    if(t1[i].type == 0){getFieldButton(f)?.setBackgroundResource(R.drawable.wp)}//set white pawn if player 1
+                    if(t1[i].type == 1){getFieldButton(f)?.setBackgroundResource(R.drawable.wpq)}
                     found = true
                 }
                 if (f == t2[i].location) {
-                    getFieldButton(f)?.setBackgroundResource(R.drawable.rp) //set white red for player 2
+                    if(t2[i].type == 0){getFieldButton(f)?.setBackgroundResource(R.drawable.rp)}//set white pawn if player 1
+                    if(t2[i].type == 1){getFieldButton(f)?.setBackgroundResource(R.drawable.rpq)}
                     found = true
                 }
                 if(found){break} //if pawn was found break the loop
