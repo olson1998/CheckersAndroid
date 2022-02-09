@@ -2,7 +2,6 @@ package com.game.checkers.board;
 
 import java.util.ArrayList;
 import java.util.List;
-import com.game.checkers.board.Pawn;
 
 import static java.lang.StrictMath.abs;
 
@@ -18,10 +17,10 @@ public class Board {
 
 
     private Pawn[] initiateTeam(int t) {
-        int[] pL1 = {40, 42, 44, 46, 49, 51, 53, 55, 56, 58, 60, 62};
-        int[] pL2 = {1, 3, 5, 7, 8, 10, 12, 14, 17, 19, 21, 23};
-        //int[] pL1 = {62, 3, 56,  -1,  -1,  -1,  -1,  -1,  -1, -1,  -1,  -1, };
-        //int[] pL2 = {14, 24, -1, 44, -1,  -1,  -1,  -1, 17,-1 , -1,  -1, };
+        //int[] pL1 = {40, 42, 44, 46, 49, 51, 53, 55, 56, 58, 60, 62};
+        //int[] pL2 = {1, 3, 5, 7, 8, 10, 12, 14, 17, 19, 21, 23};
+        int[] pL1 = {62, 3, 56,  -1,  -1,  -1,  -1,  -1,  -1, -1,  -1,  -1, };
+        int[] pL2 = {14, 24, -1, 44, -1,  -1,  -1,  -1, 17,-1 , -1,  -1, };
         int[] pL;
         if (t == 1) {
             pL = pL1;
@@ -69,8 +68,8 @@ public class Board {
         boolean stuck = false;
         boolean out = false;
         int m =0; int pi = pawnIndexFinder(player, ppl);
-        int lbc = 0; //location before capturing
-        int lac = 0; // location after capturing
+        int lbc = -99; //location before capturing
+        int lac = -99; // location after capturing
         if(player[pi].getType()==0) {
             if (((ppl + 7 == epl) || (ppl - 7 == epl) || (ppl + 9 == epl) || (ppl - 9 == epl))) {
                 nextTo = true;
@@ -91,6 +90,8 @@ public class Board {
                 lbc = epl - m; //location before capturing
                 lac = epl + m; // location after capturing
             }
+            System.out.println("lac: " + lac);
+            System.out.println("lbc: " + lbc);
         }
         int lvl1 = (lbc - lbc%8)/8;
         int lvl2 = (lac - lac%8)/8;
@@ -98,7 +99,7 @@ public class Board {
             out = true;
         }
 
-        for (int i = 0; i < player.length; i++) {
+        for (int i = 0; i < 12; i++) {
             if (player[i].getLocation() == lac) {
                 stuck = true;
                 break;
